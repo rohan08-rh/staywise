@@ -1,0 +1,30 @@
+<nav class="sticky top-0 z-30 border-b border-ink/10 bg-[#fffaf7]/90 backdrop-blur-xl">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-5 px-4 py-4 sm:px-6 lg:px-8">
+    <a href="/" class="flex items-center gap-2 font-display text-2xl font-bold tracking-tight text-ink">
+      <span>stay</span><span class="text-coral">wise</span>
+    </a>
+
+    <% const currentUserType = typeof userType !== 'undefined' ? userType : 'user'; %>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <% if (isLoggedIn) { %>
+        <% if (currentUserType === 'host') { %>
+          <a href="/host/host-home" class="rounded-full bg-ink px-4 py-2.5 text-sm font-bold text-white transition hover:bg-coral">Host dashboard</a>
+          <a href="/add-home" class="rounded-full border border-ink/10 bg-white px-4 py-2.5 text-sm font-bold text-ink transition hover:border-coral hover:text-coral">Add home</a>
+        <% } else { %>
+          <a href="/homes" class="rounded-full px-3 py-2 text-sm font-semibold text-ink/70 transition hover:bg-white hover:text-coral">Explore stays</a>
+          <a href="/favou" class="rounded-full px-3 py-2 text-sm font-semibold text-ink/70 transition hover:bg-white hover:text-coral">Favourites</a>
+        <% } %>
+
+        <form action="/logout" method="POST" class="inline-flex">
+          <button type="submit" class="rounded-full border border-ink/10 bg-white px-4 py-2.5 text-sm font-bold text-ink transition hover:border-coral hover:text-coral">
+            Logout
+          </button>
+        </form>
+      <% } else { %>
+        <a href="/signin" class="rounded-full border border-ink/10 bg-white px-4 py-2.5 text-sm font-bold text-ink transition hover:border-coral hover:text-coral">Sign up</a>
+        <a href="/login" class="rounded-full bg-coral px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-coral/20 transition hover:-translate-y-0.5 hover:bg-[#e92f51]">Log in</a>
+      <% } %>
+    </div>
+  </div>
+</nav>

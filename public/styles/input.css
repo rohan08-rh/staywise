@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@source "../../views";
+
+@theme {
+    --color-coral: #ff385c;
+    --color-ink: #18212b;
+    --color-sand: #f7f4ef;
+    --font-display: Georgia, serif;
+}

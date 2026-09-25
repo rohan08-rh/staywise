@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your homes | Staywise</title>
+    <link href="/styles/output.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-sand text-ink">
+  <%- include('../partials/nav') %>
+
+  <main class="mx-auto max-w-6xl px-6 pb-20 pt-12 lg:px-8 lg:pt-16">
+    <header class="mb-10 flex flex-col justify-between gap-5 border-b border-ink/10 pb-8 sm:flex-row sm:items-end">
+      <div>
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-coral">Host dashboard</p>
+        <h1 class="mt-3 font-display text-5xl">Your homes</h1>
+        <p class="mt-3 max-w-xl text-ink/60">Manage the stays you have shared with the Staywise community.</p>
+      </div>
+      <a href="/add-home" class="w-fit rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition hover:bg-coral">Add a home</a>
+    </header>
+
+    <% if (homes.length === 0) { %>
+      <section class="rounded-3xl border border-dashed border-ink/20 bg-white px-6 py-16 text-center">
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-coral">Nothing listed yet</p>
+        <h2 class="mt-3 font-display text-3xl">Your first home starts here.</h2>
+        <a href="/add-home" class="mt-7 inline-block rounded-full bg-coral px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#e92f51]">List your home</a>
+      </section>
+    <% } else { %>
+      <section class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <% homes.forEach((home) => { %>
+          <article class="overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/10">
+            <img src="<%= home.imageUrl %>" alt="<%= home.houseName %>" class="h-56 w-full object-cover">
+            <div class="p-5">
+              <div class="flex items-center justify-between gap-3">
+                <p class="text-xs font-bold uppercase tracking-widest text-coral">Listed stay</p>
+                <p class="text-sm font-bold">* <%= home.rating %></p>
+              </div>
+              <h2 class="mt-3 font-display text-2xl"><%= home.houseName %></h2>
+              <p class="mt-1 text-sm text-ink/55"><%= home.location %></p>
+              <div class="mt-5 flex items-center justify-between gap-3">
+                <p class="font-bold">$<%= home.price %> <span class="font-normal text-ink/50">/ night</span></p>
+                <a href="/host/edit-home/<%= home._id %>?editing=true" class="shrink-0 rounded-lg bg-yellow-400 px-4 py-2 text-sm font-bold text-black transition hover:bg-[#d7f04d]">Edit</a>
+              </div>
+              <form action="/host/delete-home/<%= home._id %>" method="POST">
+                <button type="submit" class="shrink-0 rounded-lg bg-coral px-4 py-2 text-sm font-bold text-white transition hover:bg-[#e92f51]">Delete</button>
+              </form>
+            </div>
+          </article>
+        <% }); %>
+      </section>
+    <% } %>
+  </main>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= home.houseName %> | Staywise</title>
+    <link href="/styles/output.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-sand text-ink">
+  <%- include('../partials/nav') %>
+
+  <main class="mx-auto max-w-6xl px-6 pb-20 pt-10 lg:px-8 lg:pt-14">
+    <a href="/homes" class="inline-flex items-center gap-2 text-sm font-bold text-ink/60 transition hover:text-coral">&larr; Back to stays</a>
+
+    <section class="mt-8 overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-xl shadow-ink/5">
+      <div class="grid lg:grid-cols-[1.15fr_.85fr]">
+        <div class="min-h-[360px] bg-[#dbe7e2] lg:min-h-[620px]">
+          <img src="<%= home.imageUrl %>" alt="<%= home.houseName %>" class="h-full min-h-[360px] w-full object-cover lg:min-h-[620px]">
+        </div>
+
+        <div class="flex flex-col justify-between p-7 sm:p-10 lg:p-12">
+          <div>
+            <div class="flex items-center justify-between gap-4">
+              <p class="text-sm font-bold uppercase tracking-[0.2em] text-coral">Available stay</p>
+              <p class="text-sm font-bold">* <%= home.rating %></p>
+            </div>
+            <h1 class="mt-6 font-display text-5xl leading-tight sm:text-6xl"><%= home.houseName %></h1>
+            <p class="mt-4 text-lg text-ink/60"><%= home.location %></p>
+
+            <div class="mt-10 grid gap-4 border-y border-ink/10 py-6 sm:grid-cols-2">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-widest text-ink/45">Guest rating</p>
+                <p class="mt-2 text-2xl font-bold">* <%= home.rating %> / 5</p>
+              </div>
+              <div>
+                <p class="text-xs font-bold uppercase tracking-widest text-ink/45">Location</p>
+                <p class="mt-2 text-lg font-semibold"><%= home.location %></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10 flex flex-wrap items-end justify-between gap-5">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-widest text-ink/45">Nightly rate</p>
+              <p class="mt-2 text-3xl font-bold">$<%= home.price %> <span class="text-base font-normal text-ink/50">/ night</span></p>
+            </div>
+            <a href="/homes" class="rounded-full bg-coral px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#e92f51]">Explore more stays</a>
+          </div>
+        </div>
+
+         <a
+    href="/Homes/<%= home._id %>"
+    class="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+  >
+    Details
+  </a>
+        <%- include('../partials/fav',{home:home})  %>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+
+
+

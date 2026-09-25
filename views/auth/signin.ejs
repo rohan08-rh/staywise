@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create account | Staywise</title>
+    <link href="/styles/output.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-[radial-gradient(circle_at_top,_#fff5f1_0%,_#fffaf7_35%,_#f6f2ef_100%)] text-ink antialiased">
+
+    <%- include('../partials/nav') %>
+
+    <main class="relative flex min-h-[calc(100vh-80px)] items-center justify-center overflow-hidden px-4 py-12">
+        <div class="absolute -left-16 top-20 h-64 w-64 rounded-full bg-[#ffd8d0] opacity-70 blur-3xl"></div>
+        <div class="absolute -right-16 bottom-10 h-72 w-72 rounded-full bg-[#ffe4b8] opacity-70 blur-3xl"></div>
+
+        <div class="relative grid w-full max-w-5xl overflow-hidden rounded-[32px] border border-white/60 bg-white/85 shadow-[0_30px_90px_-40px_rgba(15,23,42,0.35)] backdrop-blur md:grid-cols-[1.08fr_0.92fr]">
+
+            <section class="hidden overflow-hidden bg-gradient-to-br from-[#fff3f1] via-[#fffaf7] to-[#f5efe8] p-10 lg:flex lg:flex-col lg:justify-between">
+                <div>
+                    <span class="inline-flex items-center rounded-full border border-coral/20 bg-white/80 px-3 py-1 text-xs font-bold uppercase tracking-[0.25em] text-coral">Staywise</span>
+                    <h1 class="mt-8 max-w-sm font-display text-5xl leading-none text-ink">Welcome to your next great stay.</h1>
+                    <p class="mt-5 max-w-md text-lg leading-8 text-ink/60">Create an account to save favorites, manage stays, and book unforgettable homes with ease.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="rounded-2xl border border-ink/10 bg-white/80 p-4 shadow-sm">
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-coral">Designed for travelers</p>
+                        <p class="mt-3 text-sm text-ink/60">Curated homes, trusted hosts, and effortless booking experiences.</p>
+                    </div>
+
+                    <div class="flex items-center gap-3 rounded-2xl border border-ink/10 bg-white/80 p-4 shadow-sm">
+                        <div class="flex h-11 w-11 items-center justify-center rounded-full bg-coral/10 text-sm font-bold text-coral">24/7</div>
+                        <div>
+                            <p class="font-bold text-ink">Support that travels with you</p>
+                            <p class="text-sm text-ink/55">Helpful guidance before, during, and after your stay.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="p-6 sm:p-8 lg:p-10">
+                <div class="mx-auto max-w-md">
+                    <div class="mb-8 text-center lg:text-left">
+                        <p class="text-xs font-bold uppercase tracking-[0.35em] text-coral">Start your journey</p>
+                        <h2 class="mt-4 text-3xl font-bold tracking-tight text-ink">Create account</h2>
+                        <p class="mt-2 text-sm text-ink/60">Join Staywise and discover homes you’ll love.</p>
+                    </div>
+
+                    <% const errorList = (typeof errorMessages !== 'undefined' && errorMessages.length > 0) ? errorMessages : (typeof loginError !== 'undefined' && loginError ? [loginError] : []); %>
+                    <% if (errorList.length > 0) { %>
+                        <div class="mb-5 rounded-2xl border border-red-200 bg-red-50 p-4 shadow-sm" role="alert">
+                            <div class="flex items-start gap-3">
+                                <div class="mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-red-100 text-xs font-bold text-red-600">!</div>
+                                <div class="space-y-1">
+                                    <p class="text-sm font-semibold text-red-700">Please fix the following:</p>
+                                    <ul class="space-y-1 text-sm text-red-700">
+                                        <% errorList.forEach((message) => { %>
+                                            <li class="flex items-start gap-2">
+                                                <span class="mt-2 h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                                                <span><%= message %></span>
+                                            </li>
+                                        <% }); %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+
+                    <form action="/signup" method="POST" class="space-y-5">
+                        <div class="mb-4 rounded-2xl border border-ink/10 bg-sand/40 p-3">
+                            <label class="mb-2 block text-sm font-bold text-ink/70">I want to join as</label>
+                            <div class="grid gap-3 sm:grid-cols-2">
+                                <label class="flex cursor-pointer items-center gap-3 rounded-2xl border border-ink/10 bg-white px-3 py-2.5 text-sm font-medium text-ink/70 transition hover:border-coral/30">
+                                    <input type="radio" name="userType" value="user" checked class="h-4 w-4 text-coral focus:ring-coral/20">
+                                    <span>Guest</span>
+                                </label>
+                                <label class="flex cursor-pointer items-center gap-3 rounded-2xl border border-ink/10 bg-white px-3 py-2.5 text-sm font-medium text-ink/70 transition hover:border-coral/30">
+                                    <input type="radio" name="userType" value="host" class="h-4 w-4 text-coral focus:ring-coral/20">
+                                    <span>Host</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <div>
+                                <label for="firstName" class="mb-2 block text-sm font-bold text-ink/70">First name</label>
+                                <input
+                                    type="text"
+                                    id="firstName"
+                                    name="firstName"
+                                    placeholder="John"
+                                    required
+                                    autocomplete="given-name"
+                                    class="w-full rounded-2xl border border-ink/15 bg-sand/50 px-4 py-3.5 text-ink placeholder:text-ink/30 outline-none transition focus:border-coral focus:ring-4 focus:ring-coral/10"
+                                >
+                            </div>
+
+                            <div>
+                                <label for="lastName" class="mb-2 block text-sm font-bold text-ink/70">Last name</label>
+                                <input
+                                    type="text"
+                                    id="lastName"
+                                    name="lastName"
+                                    placeholder="Smith"
+                                    required
+                                    autocomplete="family-name"
+                                    class="w-full rounded-2xl border border-ink/15 bg-sand/50 px-4 py-3.5 text-ink placeholder:text-ink/30 outline-none transition focus:border-coral focus:ring-4 focus:ring-coral/10"
+                                >
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="mb-2 block text-sm font-bold text-ink/70">Email address</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="you@example.com"
+                                required
+                                autocomplete="email"
+                                class="w-full rounded-2xl border border-ink/15 bg-sand/50 px-4 py-3.5 text-ink placeholder:text-ink/30 outline-none transition focus:border-coral focus:ring-4 focus:ring-coral/10"
+                            >
+                        </div>
+
+                        <div>
+                            <label for="password" class="mb-2 block text-sm font-bold text-ink/70">Password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Create a strong password"
+                                required
+                                autocomplete="new-password"
+                                class="w-full rounded-2xl border border-ink/15 bg-sand/50 px-4 py-3.5 text-ink placeholder:text-ink/30 outline-none transition focus:border-coral focus:ring-4 focus:ring-coral/10"
+                            >
+                        </div>
+
+                        <div>
+                            <label for="confirmPassword" class="mb-2 block text-sm font-bold text-ink/70">Confirm password</label>
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Re-enter your password"
+                                required
+                                autocomplete="new-password"
+                                class="w-full rounded-2xl border border-ink/15 bg-sand/50 px-4 py-3.5 text-ink placeholder:text-ink/30 outline-none transition focus:border-coral focus:ring-4 focus:ring-coral/10"
+                            >
+                        </div>
+
+                        <div class="flex items-start gap-2 text-sm text-ink/60">
+                            <input type="checkbox" id="terms" name="terms" required class="mt-1 h-4 w-4 rounded border-ink/20 text-coral focus:ring-coral/20">
+                            <label for="terms">I agree to the <a href="/terms" class="font-semibold text-coral">Terms</a> and <a href="/privacy" class="font-semibold text-coral">Privacy Policy</a>.</label>
+                        </div>
+
+                        <button type="submit" class="w-full rounded-full bg-coral px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-coral/20 transition hover:-translate-y-0.5 hover:bg-[#e92f51]">
+                            Create account
+                        </button>
+                    </form>
+
+                    <div class="my-7 flex items-center gap-4">
+                        <div class="h-px flex-1 bg-ink/10"></div>
+                        <span class="text-sm text-ink/40">or</span>
+                        <div class="h-px flex-1 bg-ink/10"></div>
+                    </div>
+
+                    <button type="button" class="flex w-full items-center justify-center gap-3 rounded-full border border-ink/15 bg-white px-5 py-3.5 text-sm font-bold text-ink/70 transition hover:bg-sand/60">
+                        <span class="flex h-7 w-7 items-center justify-center rounded-full bg-[#f2f2f2] text-base font-black text-ink">G</span>
+                        Sign up with Google
+                    </button>
+
+                    <p class="mt-8 text-center text-sm text-ink/60">
+                        Already have an account?
+                        <a href="/login" class="font-bold text-coral transition hover:text-[#e92f51]">Log in</a>
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+</body>
+</html>
+
+

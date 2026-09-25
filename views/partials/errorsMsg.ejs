@@ -1,0 +1,21 @@
+  <% const errorList = (typeof errorMessages !== 'undefined' && errorMessages.length > 0) ? errorMessages : (typeof loginError !== 'undefined' && loginError ? [loginError] : []); %>
+                    <% if (errorList.length > 0) { %>
+                        <div class="mb-5 rounded-2xl border border-red-200 bg-red-50 p-4 shadow-sm" role="alert">
+                            <div class="flex items-start gap-3">
+                                <div class="mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-red-100 text-xs font-bold text-red-600">!</div>
+                                <div class="space-y-1">
+                                    <p class="text-sm font-semibold text-red-700">Please fix the following:</p>
+                                    <ul class="space-y-1 text-sm text-red-700">
+                                        <% errorList.forEach((message) => { %>
+                                            <li class="flex items-start gap-2">
+                                                <span class="mt-2 h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                                                <span><%= message %></span>
+                                            </li>
+                                        <% }); %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+
+                

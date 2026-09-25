@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List your home | Staywise</title>
+    <link href="/styles/output.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-sand text-ink">
+    <nav class="border-b border-ink/10 bg-sand/90">
+        <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 lg:px-8">
+            <a href="/" class="font-display text-2xl font-bold tracking-tight">stay<span class="text-coral">wise</span></a>
+            <a href="/" class="text-sm font-semibold text-ink/60 transition hover:text-coral">Back to stays</a>
+        </div>
+    </nav>
+    <main class="mx-auto max-w-6xl px-6 pb-20 pt-12 lg:px-8 lg:pt-16">
+        <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start lg:gap-20">
+            <div class="lg:sticky lg:top-8">
+                <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Become a host</p>
+                <h1 class="mt-4 font-display text-5xl leading-tight tracking-tight sm:text-6xl">Make room for good things.</h1>
+                <p class="mt-6 max-w-sm text-lg leading-8 text-ink/60">Share a place you love and welcome travellers looking for somewhere that feels like theirs.</p>
+                <div class="mt-10 border-l-2 border-coral pl-5 text-sm leading-7 text-ink/60"><p class="font-bold text-ink">A thoughtful listing starts here.</p><p>Tell guests what makes your space worth the journey.</p></div>
+            </div>
+            <form action="/add-home" method="POST" class="rounded-3xl border border-ink/8
+             bg-white p-7 shadow-xl shadow-ink/10 sm:p-10" enctype="multipart/form-data">
+                <div class="mb-8 border-b border-ink/10 pb-6"><h2 class="text-2xl font-bold">Tell us about your home</h2><p class="mt-2 text-sm text-ink/55">A few details are all we need to get started.</p></div>
+                <div class="space-y-5">
+                    <label class="block"><span class="mb-2 block text-sm font-bold">Home name
+
+                    </span><input required type="text" name="name" placeholder="The sunny corner" class="w-full rounded-xl border
+                     border-ink/15 px-4 py-3.5 outline-none transition placeholder:text-ink/30
+                      focus:border-coral focus:ring-4 focus:ring-coral/10"></label>
+
+                       <label class="block"><span class="mb-2 block text-sm font-bold">Upload file
+
+                    </span><input required type="file" name="photo" placeholder="The sunny corner" class="w-full rounded-xl border
+                     border-ink/15 px-4 py-3.5 outline-none transition placeholder:text-ink/30 focus:border-coral focus:ring-4 focus:ring-coral/10"></label>
+                    <label class="block"><span class="mb-2 block text-sm font-bold">Location</span><input required type="text" name="location" placeholder="City, state or region" class="w-full rounded-xl border border-ink/15 px-4 py-3.5 outline-none transition placeholder:text-ink/30 focus:border-coral focus:ring-4 focus:ring-coral/10"></label>
+                    <div class="grid gap-5 sm:grid-cols-2"><label class="block"><span class="mb-2 block text-sm font-bold">Price per night</span><input required type="number" name="price" placeholder="84" class="w-full rounded-xl border border-ink/15 px-4 py-3.5 outline-none transition placeholder:text-ink/30 focus:border-coral focus:ring-4 focus:ring-coral/10"></label><label class="block"><span class="mb-2 block text-sm font-bold">Rating</span><input required min="1" max="5" step="0.1" type="number" name="rating" placeholder="4.8" class="w-full rounded-xl border border-ink/15 px-4 py-3.5 outline-none transition placeholder:text-ink/30 focus:border-coral focus:ring-4 focus:ring-coral/10"></label></div>
+                   
+                </div>
+                <button type="submit" class="mt-8 w-full rounded-full bg-coral px-6 py-4 text-sm font-bold text-white shadow-lg shadow-coral/20 transition hover:-translate-y-0.5 hover:bg-[#e92f51]">Publish my home</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
